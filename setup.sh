@@ -156,12 +156,27 @@ function install_docker() {
 
     if [ $? == 0 ]; 
     then 
-        echo "Docker Successfully installed successfully!, pending Reboot & verification"
+        echo "Docker installed successfully!, pending Reboot & verification"
         echo " "
     fi
 
     return 0
 
+}
+
+
+function install_docker_compose() {
+
+    sudo -- sh -c 'curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+    sudo -- sh -c 'chmod +x /usr/local/bin/docker-compose'
+
+    if [ $? == 0 ]; 
+    then 
+        echo "Docker compose has been successfully installed!, pending Reboot & verification"
+        echo " "
+    fi
+
+    return 0
 }
 
 function install_arduinoIDE2_0() {
@@ -173,12 +188,12 @@ function install_arduinoIDE2_0() {
     sudo -- sh -c 'mkdir -p /opt/AppImage/ArduinoIDE'
     cd /opt/AppImage/ArduinoIDE
 
-    sudo -- sh -c 'wget -c https://downloads.arduino.cc/arduino-ide/arduino-ide_2.0.0-rc6_Linux_64bit.AppImage'
+    sudo -- sh -c 'wget -c https://downloads.arduino.cc/arduino-ide/arduino-ide_2.0.0_Linux_64bit.AppImage'
 
-    sudo -- sh -c 'chmod +x arduino-ide_2.0.0-rc6_Linux_64bit.AppImage'
+    sudo -- sh -c 'chmod +x arduino-ide_2.0.0_Linux_64bit.AppImage'
     sudo -- sh -c 'touch /usr/share/applications/ArduinoIDE2.0.desktop'
 
-    sudo -- sh -c 'echo "[Desktop Entry]\nName=ArduinoIDE2.0\nExec=/opt/AppImage/ArduinoIDE/arduino-ide_2.0.0-rc6_Linux_64bit.AppImage\nIcon=/opt/AppImage/ArduinoIDE/arduinoide_icon.png\ncomment=cloud\nType=Application\nTerminal=false\nEncoding=UTF-8\nCategories=Utility;" >> /usr/share/applications/ArduinoIDE2.0.desktop'
+    sudo -- sh -c 'echo "[Desktop Entry]\nName=ArduinoIDE2.0\nExec=/opt/AppImage/ArduinoIDE/arduino-ide_2.0.0_Linux_64bit.AppImage\nIcon=/opt/AppImage/ArduinoIDE/arduinoide_icon.png\ncomment=cloud\nType=Application\nTerminal=false\nEncoding=UTF-8\nCategories=Utility;" >> /usr/share/applications/ArduinoIDE2.0.desktop'
 
     cd ~
 
@@ -218,8 +233,21 @@ function install_google_chrome() {
     return 0
 }
 
-# Add users
-# sudo adduser kicker
+function install_grub_customizer() {
+    # Add Grub Customizer
+    sudo add-apt-repository ppa:danielrichter2007/grub-customizer 
+    sudo -- sh -c 'apt -y update && apt install -y grub-customizer'
+
+    if [ $? == 0 ]; 
+    then 
+        echo " "
+        echo "Grub Customizer has been installed successfully!"
+        echo " "
+    fi
+
+    return 0
+}
+
 
 
 install_essential_packages
@@ -227,20 +255,12 @@ install_snapstore_apps
 install_ros_humble
 install_arduinoIDE2_0
 install_google_chrome
-
-# ------> Needs Works <---------
-
-# Add Grub Customizer
-sudo add-apt-repository ppa:danielrichter2007/grub-customizer 
-sudo -- sh -c 'apt -y update && apt install -y grub-customizer'
-
-# Click Up 
-# add repository
-
-# ------> pending <---------
-
-
 install_docker
+install_docker_compose
+
+
+
+
 
 # Reboot Option
 read -p "Script has finished setting up your computer, Shall we reboot to let the changes take effect?" -n 1 -r
@@ -249,4 +269,3 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     reboot
 fi
-
