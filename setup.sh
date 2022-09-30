@@ -233,6 +233,35 @@ function install_google_chrome() {
     return 0
 }
 
+
+function install_ros_humble_navigation() {
+    sudo -- sh -c 'apt install ros-humble-navigation2'
+    sudo -- sh -c 'apt install ros-humble-nav2-bringup'    
+
+    if [ $? == 0 ]; 
+    then 
+        echo " "
+        echo "ROS Navigation for humble has been installed successfully!"
+        echo " "
+    fi
+
+    return 0
+}
+
+function install_ros_misc() {
+    #install all turtlebot packages
+    sudo -- sh -c 'apt install ros-humble-turtlebot3*'
+
+    if [ $? == 0 ]; 
+    then 
+        echo " "
+        echo "ROS misc has been installed successfully!"
+        echo " "
+    fi
+
+    return 0
+}
+
 function install_grub_customizer() {
     # Add Grub Customizer
     sudo add-apt-repository ppa:danielrichter2007/grub-customizer 
