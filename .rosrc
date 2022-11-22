@@ -1,0 +1,75 @@
+# --------------------------------------------------------------------------------------------------------- #
+# ---------------------------------------------> ROS 2: Setup <-------------------------------------------- #
+# --------------------------------------------------------------------------------------------------------- #
+alias srchumble="source /opt/ros/humble/setup.zsh"
+alias srcws="source ./install/setup.sh"
+alias srclocalws="source ./install/local_setup.sh"
+
+alias srcros="srchumble && argcomp-ros && argcomp-colcon"
+alias initros="srchumble && srccolcon && srcws && argcomp-ros && argcomp-colcon"
+
+alias pypkg="ros2 pkg create \
+--build-type ament_python \
+--destination-directory ./src  \
+--dependencies rclpy  \
+--maintainer-name sudo \
+--maintainer-email sudo@kickrobotics.com \
+--node-name" 
+
+alias cpppkg="ros2 pkg create \
+--build-type ament_cmake \
+--destination-directory ./src  \
+--dependencies rclcpp  \
+--maintainer-name sudo \
+--maintainer-email sudo@kickrobotics.com \
+--node-name" 
+
+# --------------------------------------------------------------------------------------------------------- #
+# --------------------------------------> Colcon Setup & Argcomplete <------------------------------------- #
+# --------------------------------------------------------------------------------------------------------- #
+
+# ---> Colcon <--- #
+alias srccolcon="source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh"
+
+alias rbuild="colcon build"
+alias rbuild_wsl="colcon build --symlink-install"
+alias rbuildpkg="colcon build --packages-select"
+alias rbuildpkg_wsl="colcon build --packages-select --symlink-install"
+
+# ---> Argcomplete <--- #
+alias argcomp-ros='eval "$(register-python-argcomplete3 ros2)"'
+alias argcomp-colcon='eval "$(register-python-argcomplete3 colcon)"'
+
+
+# --------------------------------------------------------------------------------------------------------- #
+# ---------------------------------------------> General cmds <-------------------------------------------- #
+# --------------------------------------------------------------------------------------------------------- #
+
+
+# ---> Git Alias <--- #
+
+alias ga="git add ."
+alias gc="git commit -m"
+alias gac="git add . && git commit -m"
+
+alias guname="git config user.name 'sudo'"
+alias guemail="git config user.email 'sudo@kickrobotics.com'"
+
+alias gcred="git config credential.helper store"
+alias gcred_gbl="git config --global credential.helper store"
+
+
+alias gpull="git pull"
+alias gpush="git push"
+alias gpp="git pull && git push"
+
+alias gclfoxy="git clone --branch foxy"
+alias gclhumble="git clone --branch humble"
+
+alias gclsub="git clone --recurse-submodules"
+alias gclsub-init="git submodule init"
+alias gclsub-update="submodule update --init --recursive"
+
+# -------------------------------------------------> Shell <------------------------------------------------ #
+alias src="source"
+# --------------------------------------------------------------------------------------------------------- #
