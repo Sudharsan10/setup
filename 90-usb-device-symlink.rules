@@ -1,0 +1,5 @@
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="1-1.1:1.0", SYMLINK+="kickRobotClaw"
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="1-1.2:1.0", SYMLINK+="kickGPS"
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="1-1.3:1.0", SYMLINK+="kickIMU01"
+ACTION=="add", SUBSYSTEMS=="usb", KERNELS=="1-1.4:1.0", SYMLINK+="kickIMU02"
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{serial}=="383250410D303733", SYMLINK+="kickRemoteTranseiver"
