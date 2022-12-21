@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Sudo
-# E-mail: sudo@kickrobotics.com
+# E-mail: Sudharsansci@gmail.com
 # 
 
 # INSTALL SCRIPT FOR UBUNTU 22.04 LTS
@@ -277,7 +277,42 @@ function install_grub_customizer() {
     return 0
 }
 
+function install_system36_power() {
+    # Add system36 power
+    sudo --sh -c 'apt-add-repository ppa:system76-dev/stable'
+    sudo -- sh -c 'apt install gnome-shell-extension-system76-power system76-power'
 
+    # optional - a Gnome extension to toggle graphics
+    sudo --sh -c 'apt install gnome-shell-extension-prefs'
+
+    if [ $? == 0 ]; 
+    then 
+        echo " "
+        echo "System36-power has been installed successfully!"
+        echo " "
+    fi
+
+    return 0
+}
+
+function install_misc() {
+    # power top
+    sudo --sh -c 'atp install powertop'
+    # htop
+    sudo --sh -c 'apt install htop'
+    # Nvidia - nvtop
+    sudo --sh -c 'apt install nvtop'
+
+
+    if [ $? == 0 ]; 
+    then 
+        echo " "
+        echo "Misc. packages has been installed successfully!"
+        echo " "
+    fi
+
+    return 0
+}
 
 install_essential_packages
 install_snapstore_apps
