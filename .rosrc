@@ -70,6 +70,11 @@ alias gclsub="git clone --recurse-submodules"
 alias gclsub-init="git submodule init"
 alias gclsub-update="submodule update --init --recursive"
 
+alias gco="git checkout"
+
 # -------------------------------------------------> Shell <------------------------------------------------ #
 alias src="source"
+alias sysupdate="sudo apt update"
+alias sysupgrade="sudo apt upgrade"
+alias sysfgrade="sudo apt update && sudo apt upgrade"
 # --------------------------------------------------------------------------------------------------------- #
