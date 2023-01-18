@@ -236,7 +236,8 @@ function install_google_chrome() {
 
 function install_ros_humble_navigation() {
     sudo -- sh -c 'apt install ros-humble-navigation2'
-    sudo -- sh -c 'apt install ros-humble-nav2-bringup'    
+    sudo -- sh -c 'apt install ros-humble-nav2-bringup' 
+    sudo -- sh -c 'apt install ros-humnle-tf-transformations'
 
     if [ $? == 0 ]; 
     then 
